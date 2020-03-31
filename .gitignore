@@ -5,7 +5,6 @@ node_modules
 #tmp
 
 # Environment variables, never commit this file
-
 .env
 public/uploads
 # The development sqlite file
