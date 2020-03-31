@@ -1,0 +1,12 @@
+.principal a:link, a:visited {
+ 
+  color: #3c00ff;
+  padding: 1px 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.principal{
+  padding-top: 50px;
+}

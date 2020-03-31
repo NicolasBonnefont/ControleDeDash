@@ -1,0 +1,15 @@
+html{
+  height: 100%;
+}
+.container .cadastroCustom{
+ width: 75%;
+ margin-left: 10%;
+ line-height: 0;
+ 
+}
+.senhaCustom{
+  width: 200px;
+}
+td{
+  max-width: 700px;
+}
