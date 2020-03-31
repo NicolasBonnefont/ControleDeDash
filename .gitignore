@@ -6,7 +6,7 @@ node_modules
 
 # Environment variables, never commit this file
 
-env
+.env
 public/uploads
 # The development sqlite file
 database/*.sqlite
