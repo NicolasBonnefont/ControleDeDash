@@ -122,20 +122,20 @@ async function igualaPainelAltera() {
         var count2 = 0
 
         while (count1 <= inputs.length) { //7
-          
-          while (count2 <= response.data.painel.length) {     //3      
-            
+
+          while (count2 <= response.data.painel.length) {     //3
+
             if (inputs[count1].value == response.data.painel[count2].idPainel) {
 
               inputs[count1].checked = true
 
-              count2++ 
-           
+              count2++
+
             }
             count1++ //6
           }
-          
-        } 
+
+        }
 
       })
   }
@@ -224,7 +224,7 @@ async function cadastraUsuario() {
     .then(function (response) {
       url = response.data.url
     })
-  
+
     await axios.post('/users', {
       "username": `${username}`,
       "name": `${name}`,
@@ -249,18 +249,18 @@ async function cadastraUsuario() {
 
 
     var local = sessionStorage.getItem('idPainel')
-    
+
 
     if (local){
     var dados = JSON.parse(local)
     var idPainel = [...dados]
-    
+
     await axios.post('/painelUsuario', {
       "idUsuario": sessionStorage.getItem('idAtualiza'),
       "idPainel": idPainel
     }, config)
       .then(function (response) {
-        
+
         limparCampos()
         location.reload()
       })
@@ -292,7 +292,10 @@ async function buscarUsuario() {
 
   const campos = document.getElementById('campos')
   var imgAltera = document.getElementById('imgAltera')
-
+console.log(x)
+   if (x == 0 ){
+      limparCampos()
+   }
   if (!x == 0) {
     await axios.post('/user', {
       'username': `${usuarioBusca}`
@@ -355,7 +358,7 @@ async function alterarUsuario() {
   var y = document.getElementById("Select").options;
   var usuarioBusca = y[x].text
 
- 
+
   var empresaAltera = ''
 
   if (!(document.getElementById("selectEmpresaAltera").selectedIndex == -1)) {
@@ -364,7 +367,7 @@ async function alterarUsuario() {
     empresaAltera = b[a].text
   }
 
-  
+
 
   const campos = document.getElementById('campos')
   const emailAltera = document.getElementById('emailAltera').value
@@ -461,11 +464,11 @@ async function alterarUsuario() {
       "idPainel": idPainel
     }, config)
       .then(function (response) {
-        alert('Usuario Alterado com Sucesso !')        
+        alert('Usuario Alterado com Sucesso !')
         campos.disabled = true
         limparCampos()
         location.reload();
-       
+
       })
       .catch(function (err) {
         console.log(err)
@@ -499,7 +502,7 @@ async function excluirUsuario() {
       'username': `${usuarioBusca}`
     }, config)
 
-      .then(function (response) {        
+      .then(function (response) {
 
       })
       .catch(function (error) {
@@ -524,7 +527,7 @@ async function excluirUsuario() {
 
 // FUNCAO QUE REMOVE O EVENTO PADRAO DE SUBMIT DO BOTAO
 
-// FUNCAO 
+// FUNCAO
 function atualizaTabela() {
   $('#teste').DataTable().ajax.reload();
 }

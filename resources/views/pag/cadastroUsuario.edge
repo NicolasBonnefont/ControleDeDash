@@ -1,317 +1,275 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="../css/alinhamentoCadastro.css">
-  <link href="../css/alinhamentoImg.css" rel="stylesheet">
-  <link href="../css/perfil/imgPerfil.css" rel="stylesheet">
-
-  <link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css" rel="stylesheet">
-  <link href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet">
-  <link href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css" rel="stylesheet">
-
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cadastro de Usuários</title>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+   <link rel="stylesheet" href="../css/alinhamentoCadastro.css">
+   <link href="../css/alinhamentoImg.css" rel="stylesheet">
+   <link href="../css/perfil/imgPerfil.css" rel="stylesheet">
+   <link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css" rel="stylesheet">
+   <link href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet">
+   <link href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css" rel="stylesheet">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <title>Cadastro de Usuários</title>
 </head>
-
 <body>
-  @include('nav/nav')
-  <div class="card card-nav-tabs card-header container ">
-    <div class="card-header card-header-danger">
-      <!-- colors: "header-primary", "header-info", "header-success", "header-warning", "header-danger" -->
-      <div class="nav-tabs-navigation">
-        <div class="nav-tabs-wrapper">
-          <ul class="nav nav-tabs" data-tabs="tabs">
-            <li class="nav-item">
-              <a class="nav-link active" href="#Cadastrar" data-toggle="tab" onclick="limparCampos()">Cadastrar</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#Alterar" data-toggle="tab" onclick="limparCampos()">Alterar</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#Listagem" data-toggle="tab" onclick="atualizaTabela()">Listagem</a>
-            </li>
-          </ul>
-        </div>
+   @include('nav/nav')
+   <div class="card card-nav-tabs card-header container ">
+      <div class="card-header card-header-danger">
+         <!-- colors: "header-primary", "header-info", "header-success", "header-warning", "header-danger" -->
+         <div class="nav-tabs-navigation">
+            <div class="nav-tabs-wrapper">
+               <ul class="nav nav-tabs" data-tabs="tabs">
+                  <li class="nav-item">
+                     <a class="nav-link active" href="#Cadastrar" data-toggle="tab"
+                        onclick="limparCampos()">Cadastrar</a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="#Alterar" data-toggle="tab" onclick="limparCampos()">Alterar</a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="#Listagem" data-toggle="tab" onclick="atualizaTabela()">Listagem</a>
+                  </li>
+               </ul>
+            </div>
+         </div>
       </div>
-    </div>
-    <div class="card-body ">
-      <div class="tab-content col-12 ">
-        <div class="tab-pane active" id="Cadastrar">
-          <div class="row">
-            <div class="col-sm-6">
-
-              <br>
-              <div class="card">
-                <div class="card-header card-header-danger">
-                  <h4 class="card-title">Dados do Usuário</h4>
-                </div>
-                <br>
-                <div class="card-body">
-                  <form id="form" onsubmit="cadastraUsuario()" method="POST">
-                    <div class="form-group ">
-
-
-
-                      <label for="exampleInputEmail1">Usuário</label>
-                      <input type="text" class="form-control" id="username" aria-describedby="emailHelp" required>
-                    </div>
-                    <div class="form-group ">
-
-
-                      <label for="exampleInputEmail1">Nome</label>
-                      <input type="text" class="form-control" id="name" aria-describedby="emailHelp" required>
-                    </div>
-                    <div class="form-group ">
-                      <label for="exampleInputEmail1">Email</label>
-                      <input type="email" class="form-control" id="email" aria-describedby="emailHelp" required>
-                    </div>
-                    <div class="form-group">
-                      <label>Senha</label>
-                      <input type="password" class="form-control col-8" id="password" required>
-                    </div>
-                    <br>
-                </div>
-              </div>
-
-              <br>
-
-              <div class="card">
-                <div class="card-header card-header-danger">
-                  <h4 class="card-title">Empresa / Dashboard</h4>
-                </div>
-                <br>
-                <div class="card-body">
-                  <div class="form-group">
-
-
-                    <label for="exampleInputEmail1">Empresa</label>
-                    <select onchange="igualaPainelCadastro()" class="form-control selectpicker"
-                      data-style="btn btn-link" id="SelectEmpresa">
-                      <option>Selecione a Empresa</option>
-                    </select>
-
-
-
-                    <br>
-                    <label for="exampleInputEmail1">Painel/Dash</label>
-                    <div class="row" onchange="mudaCheckbox()">
-                      <div id="checkbox">
-
-                      </div>
-                    </div>
+      <div class="card-body ">
+         <div class="tab-content col-12 ">
+            <div class="tab-pane active" id="Cadastrar">
+               <br>
+               <div class="row">
+                  <div class="col-sm-6 card">
+                     <div class="card-header card-header-danger">
+                        <h4 class="card-title">Dados do Usuário</h4>
+                     </div>
+                     <br>
+                     <div class="card-body">
+                        <form id="form" onsubmit="cadastraUsuario()" method="POST">
+                           <div class="form-group ">
+                              <label for="exampleInputEmail1">Usuário</label>
+                              <input type="text" class="form-control" id="username" aria-describedby="emailHelp"
+                                 required>
+                           </div>
+                           <div class="form-group ">
+                              <label for="exampleInputEmail1">Nome</label>
+                              <input type="text" class="form-control" id="name" aria-describedby="emailHelp" required>
+                           </div>
+                           <div class="form-group ">
+                              <label for="exampleInputEmail1">Email</label>
+                              <input type="email" class="form-control" id="email" aria-describedby="emailHelp" required>
+                           </div>
+                           <div class="form-group">
+                              <label>Senha</label>
+                              <input type="password" class="form-control col-8" id="password" required>
+                           </div>
+                           <br>
+                     </div>
                   </div>
-                </div>
-
-
-
-              </div>
-
-              <br>
-
-
-              <div class="card">
-                <div class="card-header card-header-danger">
-                  <h4 class="card-title">Configurações do Usuário</h4>
-                </div>
-                <br>
-
-                <div class="col-sm-6 align-items-center">
-                  <label class="form-check">
-                    <input class="form-check-input" id="admin" type="checkbox" value="">
-                    Administrador
-                    <span class="form-check-sign">
-                      <span class="check"></span>
-                    </span>
-                  </label>
-                </div>
-
-                <div class="col-sm-6 align-items-center">
-                  <label class="form-check">
-                    <input class="form-check-input" id="gestor" type="checkbox" value="">
-                    Gestor
-                    <span class="form-check-sign">
-                      <span class="check"></span>
-                    </span>
-                  </label>
-                  <br>
-                </div>
-
-              </div>
-
-              <br>
-            </div>
-            <div class="cold-sm-6">
-              <div class="card  text-center tamanhoPerfil">
-                <img id="imageNovo" class="card-img-top rounded img-fluid "
-                  src="https://upload.wikimedia.org/wikipedia/commons/2/24/Missing_avatar.svg" alt=" Thumbnail Image ">
-                <br>
-                <div class="form-group">
-                  <label for="imgNovo">CARREGAR FOTO<label>
-                      <input onchange="showImageNovo.call(this)" accept=".jpg,.jpeg,.png" type="file"
-                        class="form-control-file" id="imgNovo">
-                </div>
-              </div>
-            </div>
-
-          </div>
-          <button type="submit" class="btn btn-primary">Cadastrar</button>
-          </form>
-        </div>
-        <!--               PARTE DE ALTERACAO      -->
-        <div class="tab-pane" id="Alterar">
-          <br>
-          <form class="form-group" id="formBusca" onsubmit="buscarUsuario()">
-            <div class="col-sm-6 align-items-center">
-              <div class="input-group ">
-                <select class="form-control selectpicker" data-style="btn btn-link" id="Select">
-                  <option>Selecione o Usuário...</option>
-                </select>
-                <button class="btn btn-primary btn-round  btn-sm" type="submit">
-                  <i class="material-icons">search</i>Buscar
-                </button>
-              </div>
-            </div>
-          </form>
-          <br>
-          <br>
-          <div class="row">
-
-            <div class="col-sm-6">
-              <div class="card col-sm-12">
-                <div class="card-header card-header-danger">
-                  <h4 class="card-title">Dados do Usuário</h4>
-                </div>
-                <br>
-                <form class=" form-group" id="formAltera" method="POST" class="">
-                  <fieldset id="campos" disabled>
-
-                    <div class="form-group ">
-                      <label for="exampleInputEmail1">Nome</label>
-                      <input type="text" class="form-control" id="usuarioAltera" required>
-                    </div>
-                    <div class="form-group ">
-                      <label for="exampleInputEmail1">Email</label>
-                      <input type="email" class="form-control" id="emailAltera" required>
-                    </div>
-                    <br>
-              </div>
-
-              <br>
-
-              <div class="card col-sm-12">
-                <div class="card-header card-header-danger">
-                  <h4 class="card-title">Empresa / Dashboard</h4>
-                </div>
-                <br>
-                <div class="form-group ">
-                  <label for="exampleInputEmail1">Empresa</label>
-                  <select onchange="igualaPainelAltera()" class="form-control selectpicker" data-style="btn btn-link"
-                    id="selectEmpresaAltera">
-                    <option>Selecione a Empresa...</option>
-                  </select>
-                </div>
-                <br>
-                <label for="exampleInputEmail1">Painel/Dash</label>
-                <div class="row" onchange="mudaCheckbox()">
-                  <div id="checkboxAltera">
-
+                  <div class="col-sm-5">
+                     <div class="card  text-center tamanhoPerfil">
+                        <img id="imageNovo" class="card-img-top rounded img-fluid "
+                           src="https://upload.wikimedia.org/wikipedia/commons/2/24/Missing_avatar.svg"
+                           alt=" Thumbnail Image ">
+                        <br>
+                        <div class="form-group">
+                           <label for="imgNovo">CARREGAR FOTO<label>
+                                 <input onchange="showImageNovo.call(this)" accept=".jpg,.jpeg,.png" type="file"
+                                    class="form-control-file" id="imgNovo">
+                        </div>
+                     </div>
                   </div>
-                </div>
-                <br>
-              </div>
-              <br>
-
-
-
-              <div class="card col-sm-12">
-                <div class="card-header card-header-danger">
-                  <h4 class="card-title">Configurações do Usuário</h4>
-                </div>
-                <br>
-             
-                <div class="col-sm-4 align-items-center">
-
-                  <label class="form-check ">
-                    <input class="form-check-input" id="adminAltera" type="checkbox" value="">
-                    Administrador
-                    <span class="form-check-sign">
-                      <span class="check"></span>
-                    </span>
-                  </label>
-                </div>
-                <div class="col-sm-4 align-items-center">
-                  <label class="form-check">
-                    <input class="form-check-input" id="gestorAltera" type="checkbox" value="">
-                    Gestor
-                    <span class="form-check-sign">
-                      <span class="check"></span>
-                    </span>
-                  </label>
-                </div>
-                <br>
-              </div>
-            
+               </div>
+               <br>
+               <div class="row">
+                  <div class="col card">
+                     <div class="card-header card-header-danger">
+                        <h4 class="card-title">Empresa / Dashboard</h4>
+                     </div>
+                     <br>
+                     <div class="card-body">
+                        <div class="form-group">
+                           <label for="exampleInputEmail1">Empresa</label>
+                           <select onchange="igualaPainelCadastro()" class="form-control selectpicker"
+                              data-style="btn btn-link" id="SelectEmpresa">
+                              <option>Selecione a Empresa</option>
+                           </select>
+                           <br>
+                           <label for="exampleInputEmail1">Painel/Dash</label>
+                           <div class="row" onchange="mudaCheckbox()">
+                              <div id="checkbox">
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col card">
+                     <div class="card-header card-header-danger">
+                        <h4 class="card-title">Configurações do Usuário</h4>
+                     </div>
+                     <br>
+                     <div class="col align-items-center">
+                        <label class="form-check">
+                           <input class="form-check-input" id="admin" type="checkbox" value="">
+                           Administrador
+                           <span class="form-check-sign">
+                              <span class="check"></span>
+                           </span>
+                        </label>
+                     </div>
+                     <div class="col align-items-center">
+                        <label class="form-check">
+                           <input class="form-check-input" id="gestor" type="checkbox" value="">
+                           Gestor
+                           <span class="form-check-sign">
+                              <span class="check"></span>
+                           </span>
+                        </label>
+                        <br>
+                     </div>
+                  </div>
+               </div>
+               <button type="submit" class="btn btn-primary">Cadastrar</button>
+               </form>
             </div>
+            <!--               PARTE DE ALTERACAO      -->
+            <div class="tab-pane" id="Alterar">
+               <br>
+               <form class="form-group" id="formBusca" onsubmit="buscarUsuario()">
+                  <div class="col-sm-6 align-items-center">
+                     <div class="input-group ">
+                        <select onchange="buscarUsuario()" class="form-control selectpicker" data-style="btn btn-link" id="Select">
+                           <option>Selecione o Usuário...</option>
+                        </select>
+                        <button class="btn btn-primary btn-round  btn-sm" type="submit">
+                           <i class="material-icons">search</i>Buscar
+                        </button>
+                     </div>
+                  </div>
+               </form>
+               <br>
+               <br>
+               <div class="row">
+                  <div class=" col-sm-6 card ">
+                     <div class="card-header card-header-danger">
+                        <h4 class="card-title">Dados do Usuário</h4>
+                     </div>
+                     <br>
+                     <form class=" form-group" id="formAltera" method="POST" class="">
+                        <fieldset id="campos" disabled>
 
+                           <div class="form-group ">
+                              <label for="exampleInputEmail1">Nome</label>
+                              <input type="text" class="form-control" id="usuarioAltera" required>
+                           </div>
+                           <div class="form-group ">
+                              <label for="exampleInputEmail1">Email</label>
+                              <input type="email" class="form-control" id="emailAltera" required>
+                           </div>
+                           <br>
+                  </div>
+                  <div class="col-sm-4">
+                     <div class="text-center tamanhoPerfil ">
+                        <div class="card  ">
+                           <img id="imageAltera" class="card-img-top rounded img-fluid "
+                              src="https://upload.wikimedia.org/wikipedia/commons/2/24/Missing_avatar.svg"
+                              alt=" Thumbnail Image ">
+                           <br>
+                           <div class="form-group ">
+                              <label for="imgAltera">CARREGAR FOTO<label>
+                                    <input onchange="showImageAltera.call(this)" accept=".jpg,.jpeg,.png" type="file"
+                                       class="form-control-file" id="imgAltera" disabled>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="card col">
+                     <div class="card-header card-header-danger">
+                        <h4 class="card-title">Empresa / Dashboard</h4>
+                     </div>
+                     <br>
+                     <div class="form-group ">
+                        <label for="exampleInputEmail1">Empresa</label>
+                        <select onchange="igualaPainelAltera()" class="form-control selectpicker"
+                           data-style="btn btn-link" id="selectEmpresaAltera">
+                           <option>Selecione a Empresa...</option>
+                        </select>
+                     </div>
+                     <br>
+                     <label for="exampleInputEmail1">Painel/Dash</label>
+                     <div class="row" onchange="mudaCheckbox()">
+                        <div id="checkboxAltera">
 
-            <div class="cold-md-5 text-center tamanhoPerfil ">
-              <div class="card  ">
-                <img id="imageAltera" class="card-img-top rounded img-fluid "
-                  src="https://upload.wikimedia.org/wikipedia/commons/2/24/Missing_avatar.svg" alt=" Thumbnail Image ">
-                <br>
-                <div class="form-group ">
-                  <label for="imgAltera">CARREGAR FOTO<label>
-                      <input onchange="showImageAltera.call(this)" accept=".jpg,.jpeg,.png" type="file"
-                        class="form-control-file" id="imgAltera" disabled>
-                </div>
-              </div>
+                        </div>
+                     </div>
+                     <br>
+                  </div>
+                  <div class="card col">
+                     <div class="card-header card-header-danger">
+                        <h4 class="card-title">Configurações do Usuário</h4>
+                     </div>
+                     <br>
+                     <div class="col align-items-center">
+                        <label class="form-check ">
+                           <input class="form-check-input" id="adminAltera" type="checkbox" value="">
+                           Administrador
+                           <span class="form-check-sign">
+                              <span class="check"></span>
+                           </span>
+                        </label>
+                     </div>
+                     <div class="col align-items-center">
+                        <label class="form-check">
+                           <input class="form-check-input" id="gestorAltera" type="checkbox" value="">
+                           Gestor
+                           <span class="form-check-sign">
+                              <span class="check"></span>
+                           </span>
+                        </label>
+                     </div>
+                     <br>
+                  </div>
+               </div>
+               </form>
+               <br>
+               <button type="submit" class="btn btn-primary" onclick="alterarUsuario()">Alterar</button>
+               <button type="submit" class="btn btn-danger" onclick="excluirUsuario()">Excluir</button>
+               </fieldset>
+               </form>
             </div>
-            </form>
-          </div>
-          <br>
-          <button type="submit" class="btn btn-primary" onclick="alterarUsuario()">Alterar</button>
-          <button type="submit" class="btn btn-danger" onclick="excluirUsuario()">Excluir</button>
-
-          </fieldset>
-          </form>
-        </div>
-
-        <div class="tab-pane " id="Listagem">
-          <div class="container">
-            <table id="teste" class="display table table-striped table-bordered dt-responsive" style="width:100%">
-              <thead>
-                <tr>
-                  <th>Nome</th>
-                  <th>Email</th>
-                  <th>Empresa</th>
-                </tr>
-              </thead>
-            </table>
-          </div>
-        </div>
+            <div class="tab-pane " id="Listagem">
+               <div class="container">
+                  <table id="teste" class="display table table-striped table-bordered dt-responsive" style="width:100%">
+                     <thead>
+                        <tr>
+                           <th>Nome</th>
+                           <th>Email</th>
+                           <th>Empresa</th>
+                        </tr>
+                     </thead>
+                  </table>
+               </div>
+            </div>
+         </div>
       </div>
-    </div>
-  </div>
-  </div>
-  <script src="../js/cadastroUsuario.js"></script>
-  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-  <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-  <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
-
-  <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-  <script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-  <script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-  <script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
-  <script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.print.min.js"></script>
+   </div>
+   </div>
+   <script src="../js/cadastroUsuario.js"></script>
+   <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+   <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+   <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+   <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+   <script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+   <script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+   <script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
+   <script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.print.min.js"></script>
 
 
 
