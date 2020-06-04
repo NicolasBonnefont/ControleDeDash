@@ -13,7 +13,7 @@ class UserController {
 
     return user
 
-   } 
+   }
    catch(err){
 
     return response.status(200).send({error: { message: 'Algo não deu certo!' }, err } )
@@ -29,17 +29,17 @@ class UserController {
 
       const user = await User.findByOrFail('username', username)
       const data = request.all()
-    
+
       user.merge(data);
       await user.save();
 
       return user
-    
+
 
     }catch (err){
 
       return response.status(err.status).send({error: { message: 'Algo não deu certo!' } } )
-      
+
 
     }
   }
@@ -55,11 +55,11 @@ class UserController {
 
   async destroy ({ params,  response, request }) {
     const {username} = request.all(params)
-   
+
     const user = await User.findByOrFail('username', username)
-    
+
     await user.delete()
-     
+
     return response.status(200).send({ok:'Deletado com sucesso'})
   }
 
@@ -73,11 +73,11 @@ class UserController {
   async acesso({response, auth}){
 
     const usuario = await auth.getUser()
-      
+
     const {empresa} = await auth.getUser()
-    
+
     const empresas = await Empresa.findBy('empresa',empresa)
-   
+
     try {
       return {usuario,empresas}
     } catch (error) {
@@ -88,3 +88,4 @@ class UserController {
 }
 
 module.exports = UserController
+
