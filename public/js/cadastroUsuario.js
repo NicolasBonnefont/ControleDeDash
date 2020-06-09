@@ -292,7 +292,7 @@ async function buscarUsuario() {
 
   const campos = document.getElementById('campos')
   var imgAltera = document.getElementById('imgAltera')
-console.log(x)
+
    if (x == 0 ){
       limparCampos()
    }
@@ -456,8 +456,7 @@ async function alterarUsuario() {
     var idAtualiza =  sessionStorage.getItem('id')
     var dados = JSON.parse(local)
     var idPainel = [...dados]
-    console.log(idPainel)
-    console.log(idAtualiza)
+
 
     await axios.put('/painelUsuario', {
       "idUsuario": idAtualiza,

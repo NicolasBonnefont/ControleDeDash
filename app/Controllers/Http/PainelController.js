@@ -10,12 +10,12 @@ const User = use('App/Models/User')
 const Database = use('Database')
 
 class PainelController {
- 
+
   async index ({ request, response }) {
     const data = await Painel.all()
 
-    return {data}   
- 
+    return {data}
+
   }
 
   async create ({ request, response }) {
@@ -26,24 +26,24 @@ class PainelController {
       const data = request.all()
 
       const {empresa} = await Empresa.findByOrFail('id',data.idEmpresa)
-     
+
       const painel = await Painel.create(data)
-  
+
       painel.merge({"descricaoEmpresa": empresa});
       await painel.save();
-      
-      return painel
-  
 
-     } 
+      return painel
+
+
+     }
      catch(err){
-  
+
       return response.status(200).send({error: { message: 'Algo não deu certo!' } } )
-  
-     }    
+
+     }
   }
 
-  // MOSTRAR 1 PAINEL PELO O ID 
+  // MOSTRAR 1 PAINEL PELO O ID
   async showPainel ({ params, request, response }) {
 
     const painel = await Painel.find(params.id)
@@ -53,19 +53,19 @@ class PainelController {
 
   // MOSTRAR TODOS OS PAINEIS POR ID EMPRESA
   async show ({ params, request, response }) {
-    
-    // BUSCAR O PAINEL POR EMPRESA    
+
+    // BUSCAR O PAINEL POR EMPRESA
 
     const data = await Painel.query().where('idEmpresa', '=', params.id).fetch()
-    
+
     return {data}
   }
 
 // BUSCAR O PAINEL POR ID DO USUARIO
   async showUsuario ({ params, request, response }) {
-            
+
     const verifica = await User.findByOrFail('id', params.id)
-    console.log(verifica)
+
     if( verifica.admin === 1 ){
 
       const data = await Painel.all()
@@ -82,8 +82,8 @@ class PainelController {
           .on('empresas.id', 'painels.idEmpresa')
       })
       .where('empresas.empresa', '=', verifica.empresa)
-    
-      
+
+
       return {data}
     }
 
@@ -98,7 +98,7 @@ class PainelController {
         .on('users.id', 'idUsuario')
     })
     .where('usuarios_painels.idUsuario', '=', params.id)
-  
+
     return {data}
 
   }
@@ -108,10 +108,10 @@ class PainelController {
 
     const {idEmpresa, descricao} = await request.all()
 
-    
+
     const painel = await Painel.query().where('idEmpresa', '=', idEmpresa)
     .andWhere('descricao', '=', descricao ).fetch()
-    
+
     return painel
   }
 
@@ -121,36 +121,36 @@ class PainelController {
 
   async update ({ params, request, response }) {
     try{
-  
+
       const data = request.all()
 
       const painel = await Painel.findByOrFail('id', params.id)
 
-      const {empresa} = await Empresa.findByOrFail('id',data.idEmpresa)     
-     
+      const {empresa} = await Empresa.findByOrFail('id',data.idEmpresa)
+
       painel.merge(data);
 
       painel.merge({"descricaoEmpresa": empresa})
 
       await painel.save();
 
-      return painel    
+      return painel
 
     }catch (err){
 
       return response.status(err.status).send({error: { message: 'Algo não deu certo!' } } )
-      
 
-    }    
+
+    }
   }
 
   async destroy ({ params, request, response }) {
-    
+
     const painel = await Painel.findByOrFail('id',params.id)
-    
+
     await painel.delete()
-     
-    return response.status(200).send({ok:'Deletado com sucesso'})    
+
+    return response.status(200).send({ok:'Deletado com sucesso'})
   }
 }
 

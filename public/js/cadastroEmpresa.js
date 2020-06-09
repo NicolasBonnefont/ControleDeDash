@@ -73,7 +73,7 @@ async function buscarEmpresa() {
   var empresaBusca = y[x].text
   const campos = document.getElementById('campos')
 
-  
+
   if (!x == 0) {
     await axios.post('/empresas',{'empresa':`${empresaBusca}`}, config)
 
@@ -189,7 +189,7 @@ async function excluirEmpresa() {
 
 
   if (!x == 0) {
-    
+
     await axios.post('/empresaDelete',{'empresa':`${empresaBusca}`}, config)
 
       .then(function (response) {
@@ -213,11 +213,10 @@ function atualizaTabela() {
 
 function mostrarTabela() {
   var token = sessionStorage.getItem('sessao')
-  console.log(token)
   $(document).ready(function () {
     $('#TabelaEmpresa').DataTable({
-      
- 
+
+
       "ajax": {
         "url": '../empresas',
         "type": "GET",
@@ -235,10 +234,10 @@ function mostrarTabela() {
       dom: 'Bfrtip',
       buttons: [
           'copyHtml5',
-          'excelHtml5',          
+          'excelHtml5',
           'pdfHtml5',
           'print'
-          
+
       ]
 
     })
@@ -288,7 +287,6 @@ function showImageNovo() {
 }
 
 function showImageAltera() {
-  console.log("NOVO IMG ")
   if (this.files && this.files[0]) {
     var obj = new FileReader()
     obj.onload = function (data) {
