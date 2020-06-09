@@ -10,8 +10,8 @@
   <link href="../css/alinhamentoImg.css" rel="stylesheet">
   <link href="../css/perfil/imgPerfil.css" rel="stylesheet">
   <link href="../css/cadastroEmpresa/cardcustom.css" rel="stylesheet">
- 
-  
+
+
   <link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css" rel="stylesheet">
   <link href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet">
   <link href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css" rel="stylesheet">
@@ -56,7 +56,7 @@
                 <div class="form-group ">
                   <label for="exampleInputEmail1">Nome da Empresa</label>
                   <input type="text" class="form-control" id="empresa" aria-describedby="emailHelp" required>
-                </div>               
+                </div>
                 <br>
             </div>
 
@@ -68,7 +68,7 @@
                 <div class="form-group ">
                   <label for="imgNovo">CARREGAR LOGO<label>
                       <input onchange="showImageNovo.call(this)" accept=".jpg,.jpeg,.png" type="file"
-                        class="form-control-file" id="imgNovo">                 
+                        class="form-control-file" id="imgNovo">
                 </div>
               </div>
 
@@ -84,15 +84,12 @@
         <!--               PARTE DE ALTERACAO      -->
 
         <div class="tab-pane" id="Alterar">
-          <form class="form-group" id="formBusca" onsubmit="buscarEmpresa()" method="POST">
+          <form class="form-group" id="formBusca"  method="POST">
             <div class="col-sm-6 align-items-center">
               <div class="input-group ">
-                <select class="form-control selectpicker" data-style="btn btn-link" id="Select">
+                <select class="form-control selectpicker" onchange="buscarEmpresa()"data-style="btn btn-link" id="Select">
                   <option>Selecione a Empresa...</option>
                 </select>
-                <button class="btn btn-primary btn-round  btn-sm" type="submit">
-                  <i class="material-icons">search</i>Buscar
-                </button>
               </div>
               <br>
               <br>
@@ -128,7 +125,7 @@
           </form>
         </div>
         <div class="tab-pane" id="Listagem">
-          
+
           <table id="TabelaEmpresa" class="display table table-striped table-bordered dt-responsive " style="width:100%">
             <thead>
               <tr>
@@ -148,7 +145,7 @@
 
 
   <script src="../js/cadastroEmpresa.js"></script>
-  
+
   <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
   <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
@@ -163,8 +160,8 @@
   <script src= "https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
   <script src= "https://cdn.datatables.net/buttons/1.6.1/js/buttons.print.min.js"></script>
 
-  
-  
+
+
 </body>
 
 </html>
